@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosopher.h                                      :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/07/09 20:10:18 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/09 20:42:08 by geonwkim         ###   ########.fr       */
+/*   Created: 2024/04/18 19:09:46 by geonwkim          #+#    #+#             */
+/*   Updated: 2024/07/09 20:41:59 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHER_H
-# define PHILOSOPHER_H
+#include	"philosopher.h"
 
-# include	<pthread.h>
-# include	<unistd.h>
-# include	<stdio.h>
-# include	<stdint.h>
-# include	<stdlib.h>
-# include	<string.h>
-# include	<limits.h>
-
-/* philosopher.c */
-
-/* Attribute from LIBFT, but didn't get the LIBFT File-directory */
-int		ft_atoi(const char *str);
-long	ft_atol(const char *str);
-int		ft_isdigit(int c);
-
-#endif
+int	ft_isdigit(int c)
+{
+	if ((c > 255 || c < 0))
+		return (0);
+	if (c >= 48 && c <= 57)
+		return (1);
+	else
+		return (0);
+}

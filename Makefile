@@ -1,25 +1,32 @@
-NAME =		philo
-SRC	=		ft_atoi.c	ft_atol.c
-OBJ	=		$(SRC:.c=.o)
+NAME = philo
 
-CC	=		gcc
-CFLAGS =	-Wall -Wextra -Werror
-RM	=		rm -f
+CC = cc
 
-%.o:%.c
-	$(CC) $(CFLAGS) -c $< -o $@
+CFLAGS = -Wall -Werror -Wextra
 
-$(NAME): $(OBJS)
-	$(CC) $(OBJ) -o $(NAME)
+SOURCES = 	ft_atol.c \
+			ft_atoi.c \
+			ft_isdigit.c
+
+OBJECTS = $(SOURCES:.c=.o)
 
 all: $(NAME)
 
-clean:
-	$(RM) $(SRC)
+$(NAME): $(OBJECTS)
+	$(CC) $(OBJECTS) -o $(NAME) -fsanitize=address -g
 
-fclean:
-	$(RM) $(NAME)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+	rm -f $(SOURCES:.c=.o)
+
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY:	all clean fclean re
+bonus:
+	$(MAKE) all BONUS_FLAG=yes
+
+.PHONY: all clean fclean re bonus

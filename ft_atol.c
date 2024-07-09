@@ -6,11 +6,11 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 00:05:33 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/09 20:09:10 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/09 20:40:14 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philosopher.h"
 #include <limits.h>
 
 int	ft_check(char str_i, int sign, long ans)
