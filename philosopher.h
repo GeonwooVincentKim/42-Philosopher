@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:10:18 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/09 21:24:44 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/09 21:26:24 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include	<stdlib.h>
 # include	<string.h>
 # include	<limits.h>
+# include	<sys/time.h>
 
 /*
 memset, printf, malloc, free, write,
@@ -50,6 +51,8 @@ pthread_mutex_unlock
 		use for managing shared data
 	- start:
 		Start time, calculate elapsed time and manage timing events
+	- fork:
+		An array of mutexes, one for each fork
 */
 typedef struct s_unified
 {
@@ -59,6 +62,7 @@ typedef struct s_unified
 	pthread_mutex_t	print;
 	pthread_mutex_t	io;
 	struct timeval	start;
+	pthread_mutex_t	*fork;
 }	t_unified;
 
 // The state and properties of each individual philosophers
