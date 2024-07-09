@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:10:18 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/09 20:42:08 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/09 21:24:44 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,87 @@
 # include	<string.h>
 # include	<limits.h>
 
+/*
+memset, printf, malloc, free, write,
+usleep, gettimeofday, pthread_create,
+pthread_detach, pthread_join, pthread_mutex_init,
+pthread_mutex_destroy, pthread_mutex_lock,
+pthread_mutex_unlock
+*/
+
 /* philosopher.c */
+// Shared state and resources that are common to all philosophers
+/*
+	Name:	t_unified
+
+	Args:
+	- n_philo: The number of philosophers
+	- end: 
+		A flag indicating if the simulation should end.
+		It is used to signal all threads to stop running
+	- after_meal:
+		A counter to track how many philosophers have finished eating
+		the required number of items
+	- print:
+		A mutex to control access to the console or log output
+		Ensure that messages from different threads do not get mixed up
+	- io:
+		Mutex for read/write access control.
+		use for managing shared data
+	- start:
+		Start time, calculate elapsed time and manage timing events
+*/
+typedef struct s_unified
+{
+	int				n_philo;
+	int				end;
+	int				after_meal;
+	pthread_mutex_t	print;
+	pthread_mutex_t	io;
+	struct timeval	start;
+}	t_unified;
+
+// The state and properties of each individual philosophers
+/*
+	Name:	t_philo
+
+	Args:
+	- time_to_die:
+		The maximum time a philosopher can go without eating before dying
+	- time_to_eat:
+		The duration a philosopher spends eating
+	- time_to_sleep:
+		The duration a philosopher spends sleeping
+	- n_time_philo_must_eat:
+		Number of times each philosopher must eat
+	- n_has_eaten:
+		Number of times the philosopher has eaten so far
+	- a_name:
+		Attribute that defines the number of times of the philosopher
+		has eaten so far
+	- id_io:
+		Individual read/write lock for the philosopher
+	- last_act:
+		Timestamp of the last action performed by the philosopher
+	- last_meal:
+		Timestamp of the last meal the philosopher had
+		(Used to chek if the philosopher is starving)
+	- unified:
+		Get t_unified structure for allow each philospher's shared resources
+*/
+typedef struct s_philo
+{
+	int					time_to_die;
+	int					time_to_eat;
+	int					time_to_sleep;
+	int					n_time_philo_must_eat;
+	int					n_has_eaten;
+	int					a_name;
+	pthread_mutex_t		id_io;
+	struct timeval		last_act;
+	struct timeval		last_meal;
+	struct s_unified	*unified;
+}	t_philo;
 
 /* Attribute from LIBFT, but didn't get the LIBFT File-directory */
 int		ft_atoi(const char *str);
