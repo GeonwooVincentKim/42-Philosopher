@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:10:18 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/09 22:51:43 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/09 23:18:28 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,11 @@ typedef struct s_unified
 	Name:	t_philo
 
 	Args:
-	- time_to_die:
+	- timedie:
 		The maximum time a philosopher can go without eating before dying
-	- time_to_eat:
+	- timeeat:
 		The duration a philosopher spends eating
-	- time_to_sleep:
+	- timesleep:
 		The duration a philosopher spends sleeping
 	- n_time_philo_must_eat:
 		Number of times each philosopher must eat
@@ -95,9 +95,9 @@ typedef struct s_unified
 */
 typedef struct s_philo
 {
-	int					time_to_die;
-	int					time_to_eat;
-	int					time_to_sleep;
+	int					timedie;
+	int					timeeat;
+	int					timesleep;
 	int					n_time_philo_must_eat;
 	int					n_has_eaten;
 	int					a_name;
