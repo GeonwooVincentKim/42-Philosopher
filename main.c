@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:59:23 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/09 22:56:18 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/09 23:02:09 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ int	init_all(t_philo **philo_info, char **argv, pthread_t **phis, int argc)
 	unified = init_uni(argv);
 	if (unified == NULL)
 		return (-1);
-	*phis = (pthread_t *)malloc(sizeof(pthread_t) * unified->n_phi);
+	*phis = (pthread_t *)malloc(sizeof(pthread_t) * unified->n_philo);
 	if (*phis == NULL)
 		return (clean_uni(&unified), -1);
-	*philo_info = (t_philo *)malloc(sizeof(t_philo) * unified->n_phi);
+	*philo_info = (t_philo *)malloc(sizeof(t_philo) * unified->n_philo);
 	if (*philo_info == NULL)
 		return (free(*phis), clean_uni(&unified), -1);
 	if (init_phi(philo_info, &unified, argv, argc) == -1)
