@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:10:18 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/09 21:29:41 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:51:43 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,5 +114,8 @@ int		ft_isdigit(int c);
 
 /* philosopher.c */
 void	*philo(void	*philo_info);
+
+/* main.c */
+int		init_all(t_philo **philo_info, char **argv, pthread_t **phis, int argc);
 
 #endif

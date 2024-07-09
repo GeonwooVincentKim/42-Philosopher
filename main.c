@@ -6,51 +6,53 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:59:23 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/09 20:59:24 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:56:18 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	init_all(t_phi **phi_info, char **av, pthread_t **phis, int ac)
-{
-	t_uni	*uni;
+#include	"philo.h"
 
-	uni = init_uni(av);
-	if (uni == NULL)
+int	init_all(t_philo **philo_info, char **argv, pthread_t **phis, int argc)
+{
+	t_unified	*unified;
+
+	unified = init_uni(argv);
+	if (unified == NULL)
 		return (-1);
-	*phis = (pthread_t *)malloc(sizeof(pthread_t) * uni->n_phi);
+	*phis = (pthread_t *)malloc(sizeof(pthread_t) * unified->n_phi);
 	if (*phis == NULL)
-		return (clean_uni(&uni), -1);
-	*phi_info = (t_phi *)malloc(sizeof(t_phi) * uni->n_phi);
-	if (*phi_info == NULL)
-		return (free(*phis), clean_uni(&uni), -1);
-	if (init_phi(phi_info, &uni, av, ac) == -1)
-		return (free(*phi_info), free(*phis), clean_uni(&uni), -1);
+		return (clean_uni(&unified), -1);
+	*philo_info = (t_philo *)malloc(sizeof(t_philo) * unified->n_phi);
+	if (*philo_info == NULL)
+		return (free(*phis), clean_uni(&unified), -1);
+	if (init_phi(philo_info, &unified, argv, argc) == -1)
+		return (free(*philo_info), free(*phis), clean_uni(&unified), -1);
 	return (0);
 }
 
-int	main(int ac, char **av)
+int	main(int argc, char **argv)
 {
 	int			i;
 	pthread_t	*phis;
 	pthread_t	grimreaper;
-	t_phi		*phi_info;
+	t_philo		*philo_info;
 
-	if (ac < 5 || ac > 6 || is_valid_arg(ac, av) != 1)
+	if (argc < 5 || argc > 6 || is_valid_arg(argc, argv) != 1)
 		return (write(2, "Error\n", 6), 1);
-	if (init_all(&(phi_info), av, &phis, ac) == -1)
+	if (init_all(&(philo_info), argv, &phis, argc) == -1)
 		return (-1);
 	i = 0;
-	while (i < phi_info[0].uni->n_phi)
+	while (i < philo_info[0].unified->n_philo)
 	{
-		pthread_create(&phis[i], NULL, philosophers, &(phi_info[i]));
+		pthread_create(&phis[i], NULL, philosophers, &(philo_info[i]));
 		i++;
 	}
-	pthread_create(&grimreaper, NULL, grim, &phi_info);
+	pthread_create(&grimreaper, NULL, grim, &philo_info);
 	i = 0;
 	pthread_join(grimreaper, NULL);
-	while (i < phi_info[0].uni->n_phi)
+	while (i < philo_info[0].unified->n_philo)
 	{
 		pthread_join(phis[i++], NULL);
 	}
-	cleanup_all(&phi_info, &phis);
+	cleanup_all(&philo_info, &phis);
 }
