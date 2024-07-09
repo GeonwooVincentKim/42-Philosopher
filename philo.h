@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philosopher.h                                      :+:      :+:    :+:   */
+/*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:10:18 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/09 21:26:24 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/09 21:29:41 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHILOSOPHER_H
-# define PHILOSOPHER_H
+#ifndef PHILO_H
+# define PHILO_H
 
 # include	<pthread.h>
 # include	<unistd.h>
@@ -30,7 +30,7 @@ pthread_mutex_destroy, pthread_mutex_lock,
 pthread_mutex_unlock
 */
 
-/* philosopher.c */
+/* Structure */
 // Shared state and resources that are common to all philosophers
 /*
 	Name:	t_unified
@@ -111,5 +111,8 @@ typedef struct s_philo
 int		ft_atoi(const char *str);
 long	ft_atol(const char *str);
 int		ft_isdigit(int c);
+
+/* philosopher.c */
+void	*philo(void	*philo_info);
 
 #endif
