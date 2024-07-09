@@ -6,12 +6,18 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 21:29:05 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/09 22:00:41 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/09 22:06:58 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+/*
+	fork[0] = Left fork index
+	fork[1] = Right fork index
+
+	Wrap around if the right fork index exceeds the number of philosophers
+*/
 void	*philo(void	*philo_info)
 {
 	t_philo	*philo_new_info;
