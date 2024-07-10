@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 23:05:34 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/10 23:10:15 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:35:52 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ t_unified	*init_unified(char **argv)
 	return (uni);
 }
 
-int	is_all_num(int argc, char **argv)
+static int	is_all_num(int argc, char **argv)
 {
 	int	i;
 	int	j;
@@ -57,7 +57,7 @@ int	is_all_num(int argc, char **argv)
 	return (1);
 }
 
-int	is_all_plus_int(int argc, char **argv)
+static int	is_all_plus_int(int argc, char **argv)
 {
 	long	num;
 	int		i;
@@ -80,7 +80,7 @@ int	is_valid_arg(int argc, char **argv)
 	return (is_all_num(argc, argv) * is_all_plus_int(argc, argv));
 }
 
-int	init_phi(t_philo **philo_info, t_unified **unified, char **argv, int argc)
+int	init_philo(t_philo **philo_info, t_unified **unified, char **argv, int argc)
 {
 	int	i;
 

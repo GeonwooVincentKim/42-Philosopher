@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:10:18 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/10 18:30:04 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:36:34 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,29 +108,37 @@ typedef struct s_philo
 }	t_philo;
 
 /* Attribute from LIBFT, but didn't get the LIBFT File-directory */
-int		ft_atoi(const char *str);
-long	ft_atol(const char *str);
-int		ft_isdigit(int c);
+int			ft_atoi(const char *str);
+long		ft_atol(const char *str);
+int			ft_isdigit(int c);
+
+/* initialize.c */
+t_unified	*init_unified(char **argv);
+int			is_valid_arg(int argc, char **argv);
+int			init_philo(t_philo **philo_info, \
+			t_unified **unified, char **argv, int argc);
 
 /* philosopher.c */
-void	*philo(void	*philo_info);
+void		*philo(void	*philo_info);
 
 /* philo_action.c */
-void	philo_eat(t_philo *philo_info, int fork[2]);
-void	philo_think(t_philo *philo_info);
-void	philo_sleep(t_philo *philo_info);
+void		philo_eat(t_philo *philo_info, int fork[2]);
+void		philo_think(t_philo *philo_info);
+void		philo_sleep(t_philo *philo_info);
 
 /* philo_utils.c */
-void	philo_print(t_philo *philo_info, char *str, int last);
-int		philo_io_end(t_philo *philo_info, char state);
-void	philo_io_time(t_philo *philo_info, char state, struct timeval *time);
-long	philo_elasped_time(struct timeval begin, struct timeval current);
+void		philo_print(t_philo *philo_info, char *str, int last);
+int			philo_io_end(t_philo *philo_info, char state);
+void		philo_io_time(t_philo *philo_info, \
+			char state, struct timeval *time);
+long		philo_elasped_time(struct timeval begin, struct timeval current);
 
 /* grim.c */
-void	*grim(void *p_i);
-void	*grim_philo(t_philo **philo_info);
+void		*grim(void *p_i);
+void		*grim_philo(t_philo **philo_info);
 
 /* main.c */
-int		init_all(t_philo **philo_info, char **argv, pthread_t **pt, int argc);
+int			init_all(t_philo **philo_info, \
+			char **argv, pthread_t **pt, int argc);
 
 #endif

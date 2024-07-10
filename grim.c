@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 23:13:25 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/10 16:03:50 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:32:46 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	*grim_philo(t_philo **philo_info)
 				return (NULL);
 			philosophers_rw_time(&((*(philo_info))[i]), 'r', &lastmeal);
 			gettimeofday(&(now), NULL);
-			if (get_elspsed_time(lastmeal, now) > (*(philo_info))[i].timedie)
+			if (philo_elasped_time(lastmeal, now) > (*(philo_info))[i].timedie)
 			{
 				philosophers_print(&((*(philo_info))[i]), "died", 1);
 				i = -1;

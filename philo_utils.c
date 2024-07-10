@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:36:07 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/10 18:32:08 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:32:40 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ void	philo_print(t_philo *philo_info, char *str, int last)
 	pthread_mutex_unlock(&(philo_info->unified->print));
 }
 
-long	get_elspsed_time(struct timeval start, struct timeval now)
+long	philo_elasped_time(struct timeval begin, struct timeval current)
 {
-	return ((now.tv_sec - start.tv_sec) * 1000L
-		+ (now.tv_usec - start.tv_usec) / 1000L);
+	return ((current.tv_sec - begin.tv_sec) * 1000L
+		+ (current.tv_usec - begin.tv_usec) / 1000L);
 }
