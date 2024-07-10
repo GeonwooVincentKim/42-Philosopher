@@ -6,13 +6,13 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 23:13:25 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/10 23:46:30 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/11 00:17:26 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	pt_mutex_unlock(pthread_mutex_t *p)
+int	pt_mutex_unlock(pthread_mutex_t *p)
 {
 	return (pthread_mutex_unlock(p));
 }
