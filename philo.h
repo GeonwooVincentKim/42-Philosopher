@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:10:18 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/10 16:02:14 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/10 18:30:04 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ typedef struct s_unified
 		The duration a philosopher spends eating
 	- timesleep:
 		The duration a philosopher spends sleeping
-	- n_time_philo_must_eat:
+	- n_must_eat:
 		Number of times each philosopher must eat
 	- n_has_eaten:
 		Number of times the philosopher has eaten so far
@@ -98,7 +98,7 @@ typedef struct s_philo
 	int					timedie;
 	int					timeeat;
 	int					timesleep;
-	int					n_time_philo_must_eat;
+	int					n_must_eat;
 	int					n_has_eaten;
 	int					a_name;
 	pthread_mutex_t		id_io;
@@ -114,6 +114,17 @@ int		ft_isdigit(int c);
 
 /* philosopher.c */
 void	*philo(void	*philo_info);
+
+/* philo_action.c */
+void	philo_eat(t_philo *philo_info, int fork[2]);
+void	philo_think(t_philo *philo_info);
+void	philo_sleep(t_philo *philo_info);
+
+/* philo_utils.c */
+void	philo_print(t_philo *philo_info, char *str, int last);
+int		philo_io_end(t_philo *philo_info, char state);
+void	philo_io_time(t_philo *philo_info, char state, struct timeval *time);
+long	philo_elasped_time(struct timeval begin, struct timeval current);
 
 /* grim.c */
 void	*grim(void *p_i);

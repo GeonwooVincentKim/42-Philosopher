@@ -4,13 +4,20 @@ CC = cc
 
 CFLAGS = -Wall -Werror -Wextra
 
-SOURCES = 	ft_atol.c \
+SOURCES = 	main.c \
+			clean.c \
+			ft_atol.c \
 			ft_atoi.c \
-			ft_isdigit.c
+			ft_isdigit.c \
+			grim.c \
+			init.c \
+			philo_utils.c \
+			philo_action.c \
+			philo.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
-all: $(NAME)
+all: $(NAME)555444
 
 $(NAME): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(NAME) -fsanitize=address -g
