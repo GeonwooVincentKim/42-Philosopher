@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:10:18 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/10 23:36:34 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:46:39 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,12 @@ t_unified	*init_unified(char **argv);
 int			is_valid_arg(int argc, char **argv);
 int			init_philo(t_philo **philo_info, \
 			t_unified **unified, char **argv, int argc);
+
+/* clean.c */
+void		clean_unified(t_unified **unified);
+void		clean_all(t_philo **p_info, pthread_t **pt);
+void		destroy_fork(pthread_mutex_t *thread, int num);
+void		destroy_io(t_philo **philo_info, int num);
 
 /* philosopher.c */
 void		*philo(void	*philo_info);

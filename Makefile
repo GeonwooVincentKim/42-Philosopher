@@ -10,14 +10,14 @@ SOURCES = 	main.c \
 			ft_atoi.c \
 			ft_isdigit.c \
 			grim.c \
-			init.c \
+			initialize.c \
 			philo_utils.c \
 			philo_action.c \
 			philo.c
 
 OBJECTS = $(SOURCES:.c=.o)
 
-all: $(NAME)555444
+all: $(NAME)
 
 $(NAME): $(OBJECTS)
 	$(CC) $(OBJECTS) -o $(NAME) -fsanitize=address -g

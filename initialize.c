@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 23:05:34 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/10 23:35:52 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:49:07 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_unified	*init_unified(char **argv)
 		(pthread_mutex_t *)malloc(sizeof(pthread_mutex_t) * uni->n_philo);
 	if (uni->fork == NULL)
 		return (pthread_mutex_destroy(&(uni->print)),
-			pthread_mutex_destroy(&(uni->rw_lock)), free(uni), NULL);
+			pthread_mutex_destroy(&(uni->io)), free(uni), NULL);
 	uni->end = 0;
 	uni->after_meal = 0;
 	return (uni);
@@ -85,25 +85,25 @@ int	init_philo(t_philo **philo_info, t_unified **unified, char **argv, int argc)
 	int	i;
 
 	i = 0;
-	while (i < (*unified)->n_phi)
+	while (i < (*unified)->n_philo)
 	{
-		(*philo_info)[i].ttd = ft_atoi(argv[2]);
-		(*philo_info)[i].tte = ft_atoi(argv[3]);
-		(*philo_info)[i].tts = ft_atoi(argv[4]);
-		(*philo_info)[i].n_tpme = -1;
+		(*philo_info)[i].timedie = ft_atoi(argv[2]);
+		(*philo_info)[i].timeeat = ft_atoi(argv[3]);
+		(*philo_info)[i].timesleep = ft_atoi(argv[4]);
+		(*philo_info)[i].n_must_eat = -1;
 		if (argc == 6)
-			(*philo_info)[i].n_tpme = ft_atoi(argv[5]);
-		(*philo_info)[i].n_eat = 0;
-		(*philo_info)[i].name = i;
+			(*philo_info)[i].n_must_eat = ft_atoi(argv[5]);
+		(*philo_info)[i].n_has_eaten = 0;
+		(*philo_info)[i].a_name = i;
 		(*philo_info)[i].unified = *unified;
 		(*philo_info)[i].last_meal = (*unified)->start;
-		(*philo_info)[i].last_argction = (*philo_info)[i].last_meal;
+		(*philo_info)[i].last_act = (*philo_info)[i].last_meal;
 		if (pthread_mutex_init(&((*unified)->fork[i]), NULL) != 0)
 			return (destroy_fork((*unified)->fork, i),
-				destroy_rw_lock(philo_info, i), -1);
+				destroy_io(philo_info, i), -1);
 		if (pthread_mutex_init(&((*philo_info)[i].id_io), NULL) != 0)
 			return (destroy_fork((*unified)->fork, i + 1),
-				destroy_rw_lock(philo_info, i), -1);
+				destroy_io(philo_info, i), -1);
 		i++;
 	}
 	return (0);

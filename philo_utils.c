@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 17:36:07 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/10 23:32:40 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:50:46 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 void	philo_io_time(t_philo *philo_info, char state, struct timeval *time)
 {
 	pthread_mutex_lock(&(philo_info->id_io));
-	if (mode == 'r')
+	if (state == 'r')
 		*time = philo_info->last_meal;
-	else if (mode == 'w')
+	else if (state == 'w')
 		philo_info->last_meal = *time;
 	else
 		printf("ERROR");
@@ -30,9 +30,9 @@ int	philo_io_end(t_philo *philo_info, char state)
 
 	ret = 0;
 	pthread_mutex_lock(&(philo_info->unified->io));
-	if (mode == 'r')
+	if (state == 'r')
 		ret = philo_info->unified->end;
-	else if (mode == 'w')
+	else if (state == 'w')
 		philo_info->unified->end = 1;
 	else
 		printf("ERROR");
@@ -45,7 +45,7 @@ void	philo_print(t_philo *philo_info, char *str, int last)
 	struct timeval	time;
 
 	pthread_mutex_lock(&(philo_info->unified->print));
-	if (philosophers_rw_end(((t_philo *)philo_info), 'r') == 1)
+	if (philo_io_end(((t_philo *)philo_info), 'r') == 1)
 	{
 		pthread_mutex_unlock(&(philo_info->unified->print));
 		return ;
@@ -54,8 +54,8 @@ void	philo_print(t_philo *philo_info, char *str, int last)
 	printf("%ld ", (time.tv_sec - philo_info->unified->start.tv_sec) * 1000
 		+ (time.tv_usec - philo_info->unified->start.tv_usec) / 1000);
 	printf("%d %s\n", philo_info->a_name + 1, str);
-	if (end)
-		philosophers_rw_end((philo_info), 'w');
+	if (last)
+		philo_io_end((philo_info), 'w');
 	pthread_mutex_unlock(&(philo_info->unified->print));
 }
 

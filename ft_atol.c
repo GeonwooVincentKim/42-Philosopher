@@ -6,13 +6,13 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 00:05:33 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/09 21:29:58 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:54:02 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	ft_check(char str_i, int sign, long ans)
+static int	ft_check(char str_i, int sign, long ans)
 {
 	if (ans == LONG_MAX / 10 && sign == 1)
 	{
@@ -28,7 +28,7 @@ int	ft_check(char str_i, int sign, long ans)
 	return (0);
 }
 
-long	ft_strtol(const char *str, int sign)
+static long	ft_strtol(const char *str, int sign)
 {
 	long	ans;
 	int		n;

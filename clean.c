@@ -6,11 +6,11 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 23:13:53 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/10 23:31:16 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:43:29 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "phi.h"
+#include "philo.h"
 
 void	clean_unified(t_unified **unified)
 {
@@ -50,7 +50,7 @@ void	destroy_fork(pthread_mutex_t *thread, int num)
 	}
 }
 
-static void	destroy_io(t_philo **philo_info, int num)
+void	destroy_io(t_philo **philo_info, int num)
 {
 	int	i;
 

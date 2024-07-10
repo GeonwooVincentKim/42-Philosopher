@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:04:28 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/10 18:25:24 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:52:18 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static void	philo_eating(t_philo *philo_info, int fork[2])
 		philo_print(philo_info, "is eating", 1);
 	else
 		philo_print(philo_info, "is eating", 0);
-	gettimeofday(&now, NULL);
+	gettimeofday(&cur, NULL);
 	philo_io_time(philo_info, 'w', &cur);
 	if (philo_io_end(philo_info, 'r') != 1)
 	{
 		usleep(philo_info->timeeat * 1000);
-		gettimetoday(&(cur), NULL);
+		gettimeofday(&(cur), NULL);
 		philo_info->last_act = cur;
 	}
 	pthread_mutex_unlock(&((philo_info->unified->fork)[fork[0]]));
@@ -41,11 +41,11 @@ void	philo_eat(t_philo *philo_info, int fork[2])
 	if (philo_info->a_name % 2 == 1)
 		usleep(350);
 	pthread_mutex_lock(&((philo_info->unified->fork)[fork[0]]));
-	if (philo_io_end(((t_phi *)philo_info), 'r') == 1)
+	if (philo_io_end(((t_philo *)philo_info), 'r') == 1)
 		return ;
 	philo_print(philo_info, "has taken a fork", 0);
 	pthread_mutex_lock(&((philo_info->unified->fork)[fork[1]]));
-	if (philo_io_end(((t_phi *)philo_info), 'r') == 1)
+	if (philo_io_end(((t_philo *)philo_info), 'r') == 1)
 		return ;
 	philo_print(philo_info, "has taken a fork", 1);
 	philo_eating(philo_info, fork);
@@ -56,7 +56,7 @@ void	philo_think(t_philo *philo_info)
 	struct timeval	cur;
 
 	philo_print(philo_info, "is thinking", 0);
-	gettimeofday(&(now), NULL);
+	gettimeofday(&(cur), NULL);
 	philo_info->last_act = cur;
 }
 

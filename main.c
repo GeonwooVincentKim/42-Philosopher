@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/09 20:59:23 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/10 23:35:57 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/10 23:40:46 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	main(int argc, char **argv)
 	i = 0;
 	while (i < philo_info[0].unified->n_philo)
 	{
-		pthread_create(&pt[i], NULL, philosophers, &(philo_info[i]));
+		pthread_create(&pt[i], NULL, philo, &(philo_info[i]));
 		i++;
 	}
 	pthread_create(&grimreaper, NULL, grim, &philo_info);
@@ -52,7 +52,7 @@ int	main(int argc, char **argv)
 	pthread_join(grimreaper, NULL);
 	while (i < philo_info[0].unified->n_philo)
 	{
-		pthread_join(phis[i++], NULL);
+		pthread_join(pt[i++], NULL);
 	}
 	clean_all(&philo_info, &pt);
 }
