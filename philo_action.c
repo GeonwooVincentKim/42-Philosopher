@@ -6,7 +6,7 @@
 /*   By: geonwkim <geonwkim@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/10 16:04:28 by geonwkim          #+#    #+#             */
-/*   Updated: 2024/07/10 23:52:18 by geonwkim         ###   ########.fr       */
+/*   Updated: 2024/07/11 00:08:08 by geonwkim         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,15 @@ static void	philo_eating(t_philo *philo_info, int fork[2])
 void	philo_eat(t_philo *philo_info, int fork[2])
 {
 	if (philo_info->a_name % 2 == 1)
-		usleep(350);
+		usleep(300);
 	pthread_mutex_lock(&((philo_info->unified->fork)[fork[0]]));
-	if (philo_io_end(((t_philo *)philo_info), 'r') == 1)
+	if (philo_io_end(philo_info, 'r') == 1)
 		return ;
 	philo_print(philo_info, "has taken a fork", 0);
 	pthread_mutex_lock(&((philo_info->unified->fork)[fork[1]]));
-	if (philo_io_end(((t_philo *)philo_info), 'r') == 1)
+	if (philo_io_end(philo_info, 'r') == 1)
 		return ;
-	philo_print(philo_info, "has taken a fork", 1);
+	philo_print(philo_info, "has taken a fork", 0);
 	philo_eating(philo_info, fork);
 }
 
