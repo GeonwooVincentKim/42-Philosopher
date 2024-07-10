@@ -20,7 +20,7 @@ OBJECTS = $(SOURCES:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJECTS)
-	$(CC) $(OBJECTS) -o $(NAME) -fsanitize=address -g
+	$(CC) $(OBJECTS) -o $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $< -o $@
